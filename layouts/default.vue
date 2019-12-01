@@ -1,12 +1,18 @@
 <template>
   <div>   
+    <Header></Header>
     <nuxt />         <!-- 内容占位组件相当于router-view -->  
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
+import Header from "@/components/header" 
+import Footer from "@/components/footer" 
 export default {
-
+  components:{
+    Header,Footer
+  }
 }
 </script>
 
