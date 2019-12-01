@@ -1,6 +1,7 @@
 <template>
+  <!-- 这是机票的主文件 -->
   <div class="index">
-    这是首页
+      这是机票的首页
   </div>
 </template>
 
