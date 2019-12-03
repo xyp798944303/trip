@@ -58,6 +58,9 @@ export default {
             });
             setTimeout(()=>{
                 this.$router.replace("/")
+                let data = JSON.stringify(this.$store.state.user.userInfo)
+                console.log(data);
+                // localStorage.setItem("vuex",data)
             },1000)
           })
           }

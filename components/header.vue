@@ -21,7 +21,7 @@
             <el-row type="flex" align="middle">
 
                 <!-- 如果用户存在则展示用户信息，用户数据来自store -->
-                <el-dropdown v-if="$store.state.user.userInfo">
+                <el-dropdown v-if="$store.state.user.userInfo.token">
                     <el-row type="flex" align="middle" class="el-dropdown-link">
                         <nuxt-link to="#">
                             <img :src="$axios.defaults.baseURL + $store.state.user.userInfo.user.defaultAvatar"/>
@@ -38,6 +38,7 @@
                         </el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
+                
 
                 <!-- 不存在用户信息展示登录注册链接 -->
                 <nuxt-link to="/user/login" class="account-link" v-else>
@@ -51,7 +52,10 @@
 export default {
     methods: {
         // 用户退出
-        handleLogout(){},
+        handleLogout(){
+            console.log(123);
+            this.$store.commit("user/clearUserInfo");
+        },
     }
 }
 </script>
