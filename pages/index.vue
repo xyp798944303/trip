@@ -77,13 +77,17 @@ export default {
     this.$axios({
       url: "/scenics/banners"
     }).then((res)=>{
-    
-      this.banners = res.data.data
-       console.log(this.banners);
-    })
+        this.banners = res.data.data
+         console.log(this.banners);
+        })
   },
     methods: {
-        handleOption(index){},
+        handleOption(index){
+            this.currentOption = index
+            const item = this.options[index]
+            if(item.name==="机票") this.$router.push(item.pageUrl)
+
+        },
         handleSearch(){}
     }
 }

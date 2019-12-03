@@ -1,0 +1,33 @@
+//这里是vuex  vue存储数据的地方     
+// 用户管理
+import {accounts} from "@/axios/index.js"
+export const store = ()=>{
+    //采用接口返回数据结构 
+    // 赋予初始值 来接收 
+    return {
+        userInfo:{
+            token:'',
+            user : {}
+        }
+    }
+}
+
+export const mutations = {  
+    setUserInfo(state, data){
+        state.userInfo = data;
+    }
+};  //vux修改数据的地方  只能用store.commit来调用
+
+export const actions = {
+    // 登录 
+    login({commit}, data){
+        // {commit}等价于以下代码 
+        // login(store,data){
+        //     const {commit} = store
+        // }
+         return  accounts(data).then((res)=>{
+            commit("setUserInfo",res.data)
+            return res.data
+        })
+    }
+};
