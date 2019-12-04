@@ -1,4 +1,4 @@
-//这里是vuex  vue存储数据的地方     
+//这里是vuex  vue存储数据的地方       vuex里面state得数据是不能直接赋值的 只能用 mutations的方法来改值
 // 用户管理
 import {accounts} from "@/axios/index.js"
 export const state = ()=>{
