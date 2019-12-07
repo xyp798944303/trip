@@ -21,7 +21,6 @@
           placeholder="请搜索出发城市"
           class="el-autocomplete"
           :fetch-suggestions="querySearchAsync"
-          :trigger-on-focus="false"
           @select="handleSelect"
           @blur="showdepart"
           v-model="form.departCity"
@@ -32,7 +31,6 @@
         <el-autocomplete
           placeholder="请搜索到达城市"
           :highlight-first-item="true"
-          :trigger-on-focus="false"
           :fetch-suggestions="queryDestSearch"
           @select="handleDestSelect"
           @blur="showdest"
@@ -126,8 +124,11 @@ export default {
       //     };
       //   });
       this.getCityData(value).then(res => {
-        this.departArr = res;
-        cb(this.departArr); //cb就是显示出来的搜索列表
+        if (value !== "") {
+          this.departArr = res;
+        }
+        let arr = res
+        cb(arr); //cb就是显示出来的搜索列表
       });
     },
     // 出发城市下拉选择时触发
@@ -152,8 +153,11 @@ export default {
     // value 是选中的值，cb是回调函数，接收要展示的列表
     queryDestSearch(value, cb) {
       this.getCityData(value).then(res => {
-        this.destArr = res;
-        cb(this.destArr); //cb就是显示出来的搜索列表
+        if (value !== "") {
+          this.destArr = res;
+        }
+        let arr = res
+        cb(arr); //cb就是显示出来的搜索列表
       });
     },
 

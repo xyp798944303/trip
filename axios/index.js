@@ -46,6 +46,16 @@ export  const airsSale = ()=>{
     })
 }
 
+
+//这是根据数据查找列表  
+export  const airs = (data)=>{
+    return axios({
+        url: `/airs`,
+        params: data
+    })
+}
+
+
 axios.interceptors.response.use(function (response) {
     // 对响应数据做点什么
     return response;
