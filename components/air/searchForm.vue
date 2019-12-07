@@ -104,7 +104,15 @@ export default {
       return arr;
     },
     // tab切换时触发
-    handleSearchTab(item, index) {},
+    handleSearchTab(item, index) {
+      if (index === 1) {
+        this.$confirm("目前暂不支持往返，请使用单程选票！", "提示", {
+          confirmButtonText: "确定",
+          showCancelButton: false,
+          type: "warning"
+        });
+      }
+    },
 
     // 出发城市输入框获得焦点时触发
     // value 是选中的值，cb是回调函数，接收要展示的列表
@@ -129,13 +137,13 @@ export default {
     },
     // 出发城市 失去焦点时候 自动把搜索到的数组第一项放在 input上
     showdepart() {
-        // console.log(this.form.departCity !=='');
-        // console.log(this.departArr.length > 0);
-        // console.log((this.departArr.length > 0) && (this.form.departCity !==''));
-      if (this.departArr.length > 0 && this.form.departCity !=='') {
+      // console.log(this.form.departCity !=='');
+      // console.log(this.departArr.length > 0);
+      // console.log((this.departArr.length > 0) && (this.form.departCity !==''));
+      if (this.departArr.length > 0 && this.form.departCity !== "") {
         this.form.departCode = this.departArr[0].sort;
         this.form.departCity = this.departArr[0].value;
-      } else if (this.form.departCity==="") {
+      } else if (this.form.departCity === "") {
         this.form.departCode = "";
         this.form.departCity = "";
       }
@@ -157,7 +165,7 @@ export default {
     // 目标城市 失去焦点时候 自动把搜索到的数组第一项放在 input上
     showdest() {
       console.log(234);
-      if (this.destArr.length > 0 &&  this.form.destCity !== "") {
+      if (this.destArr.length > 0 && this.form.destCity !== "") {
         this.form.destCode = this.destArr[0].sort;
         this.form.destCity = this.destArr[0].value;
       } else if (this.form.destCity === "") {
@@ -167,18 +175,26 @@ export default {
     },
     // 确认选择日期时触发
     handleDate(value) {
-         this.form.departDate = moment(value).format("YYYY-MM-DD");
+      this.form.departDate = moment(value).format("YYYY-MM-DD");
     },
 
-    // 触发和目标城市切换时触发
-    handleReverse() {},
+    // 触发换 目标城市切换时触发
+    handleReverse() {
+      const showarr = this.departArr;
+      const { departCity, departCode, destCity, destCode } = this.form;
+      this.form.departCity = destCity;
+      this.form.departCode = destCode;
+      this.form.destCity = departCity;
+      this.form.destCode = departCode;
+      this.departArr = this.destArr;
+      this.destArr = showarr;
+    },
 
     // 提交表单是触发
     handleSubmit() {
-      console.log(this.form);
+      this.$router.push({ path: "/air/flights", query: this.form });
     }
-  },
-  mounted() {}
+  }
 };
 </script>
 

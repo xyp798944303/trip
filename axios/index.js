@@ -38,7 +38,13 @@ export  const airCities = (data)=>{
     })
 }
 
+//这是特价机票列表  /airs/sale  
 
+export  const airsSale = ()=>{
+    return axios({
+        url: `/airs/sale`,
+    })
+}
 
 axios.interceptors.response.use(function (response) {
     // 对响应数据做点什么
