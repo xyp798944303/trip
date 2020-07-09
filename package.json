@@ -5,7 +5,7 @@
   "author": "十丶一",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "vue-cli-service serve",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
